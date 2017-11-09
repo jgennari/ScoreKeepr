@@ -6,7 +6,7 @@
 #include <avr/sleep.h>
 #include "PinChangeInterrupt.h"
 #include "LowPower.h"
-//#include <EEPROM.h>
+#include <EEPROMex.h>
 
 #define RF69_FREQ     915.0
 #define RFM69_CS      10
@@ -35,10 +35,13 @@ int min_dim = 5;
 int min_off = 10;
 int level_dim = 4;
 int level_bright = 12;
+int P1ScoreMemory = 0;
+int P2ScoreMemory = 4;
+int BrightnessMemory = 8;
+const int memBase = 350;
 
 void setup() {
-  matrix.begin(0x70);
-  matrix.setBrightness(level_bright);      
+  matrix.begin(0x70);    
     
   pinMode(P1U,INPUT_PULLUP);  
   P1U_db.attach(P1U);
@@ -60,10 +63,7 @@ void setup() {
   P2D_db.attach(P2D);
   P2D_db.interval(50);
   attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(P2U), wake, CHANGE);
-  
-  P1Score = 0;
-  P2Score = 0;
-    
+      
   pinMode(RFM69_RST, OUTPUT);
   digitalWrite(RFM69_RST, LOW);
   
@@ -83,14 +83,32 @@ void setup() {
   uint8_t key[] = { 0x29, 0x7F, 0x03, 0x04, 0x05, 0x06, 0x11, 0x08,
                     0x01, 0x15, 0x03, 0x04, 0x05, 0x06, 0x04, 0x08};
   rf69.setEncryptionKey(key);
-  
-  
+    
   matrix.print(10000, DEC);
   matrix.writeDisplay();
   delay(500);
   
   matrix.clear();
   matrix.writeDisplay();
+
+  if (!EEPROM.isReady())
+    writeErrorCode(1044);
+    
+  EEPROM.setMemPool(memBase, EEPROMSizeATmega328);
+  P1Score = EEPROM.readInt(memBase+P1ScoreMemory);
+  P2Score = EEPROM.readInt(memBase+P2ScoreMemory);
+
+  if (P1Score < 0)
+    P1Score = 0;
+    
+  if (P2Score < 0)
+    P2Score = 0;
+    
+  level_bright = EEPROM.readInt(memBase+BrightnessMemory);
+  if (level_bright < 0)
+    level_bright = 12;    
+  matrix.setBrightness(level_bright);  
+  
   lastChange = millis();    
 }
 
@@ -117,6 +135,7 @@ void parseScore(char recv[]) {
   P2Score = p2s;
   
   delay(50);
+  
   matrix.writeDigitRaw(2, 0x00);
   matrix.writeDisplay();
 }
@@ -168,8 +187,14 @@ void changeScore(char player, char dir) {
       }
       break;
   }
-
+  
   sendScore();
+  saveScore();
+}
+
+void saveScore() {
+  EEPROM.writeInt(memBase+P1ScoreMemory,P1Score);
+  EEPROM.writeInt(memBase+P2ScoreMemory,P2Score);  
 }
 
 void loop() {   
@@ -210,8 +235,8 @@ void loop() {
     changeScore('2', 'D');
   else if (P2DState == LOW && duration > shortPress) 
     resetScores();
-  //else if (P1DState == LOW && duration > shortPress) 
-  //  cycleBrightness();
+  else if (P1DState == LOW && duration > shortPress) 
+    cycleBrightness();
 
   uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
   uint8_t len = sizeof(buf);
@@ -243,12 +268,18 @@ void resetScores() {
 }
 
 void cycleBrightness() {
+  level_bright++;
+  
   if (level_bright > 15)
     level_bright = 1;
+    
   matrix.setBrightness(level_bright);
+  EEPROM.writeInt(memBase+BrightnessMemory, level_bright);
+  
   matrix.clear();
   matrix.println(level_bright);
   matrix.writeDisplay();
+  
   delay(500);
   matrix.clear();
   matrix.writeDisplay();
