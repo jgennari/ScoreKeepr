@@ -93,11 +93,24 @@ void setup() {
 
   if (!EEPROM.isReady())
     writeErrorCode(1044);
-    
+
+  
   EEPROM.setMemPool(memBase, EEPROMSizeATmega328);
   P1Score = EEPROM.readInt(memBase+P1ScoreMemory);
   P2Score = EEPROM.readInt(memBase+P2ScoreMemory);
 
+  if (P1Score < 0
+      || P1Score > 99
+      || P2Score < 0
+      || P2Score > 99){
+      
+    EEPROM.writeInt(memBase+P1ScoreMemory,0);
+    EEPROM.writeInt(memBase+P2ScoreMemory,0);  
+    P1Score = 0;
+    P2Score = 0;
+  }
+      
+  
   if (P1Score < 0)
     P1Score = 0;
     
@@ -115,24 +128,23 @@ void setup() {
 void parseScore(char recv[]) {
   matrix.writeDigitRaw(2, 0x08);  
   matrix.writeDisplay();
-    
-  char * pch;
-  pch = strtok (recv,":");
-  int p1s = NULL;
-  int p2s = NULL;
-  
-  while (pch != NULL)
-  {
-    if (p1s != NULL)  
-      p2s = (int)pch;
-    else
-      p1s = (int)pch;
       
-    pch = strtok (NULL, " ,.-");
-  }
+  char p1s_[5];
+  memcpy(p1s_, &recv[0], 5);
+  p1s_[3] = '\0';
 
-  P1Score = p1s;
-  P2Score = p2s;
+  char p2s_[3];
+  memcpy(p2s_, &recv[3], 2);
+  p2s_[3] = '\0';
+  
+  int i;
+  i = strtol(p1s_, NULL, 10);
+  
+  int x;
+  x = strtol(p2s_, NULL, 10);
+    
+  P1Score = i;
+  P2Score = x;
   
   delay(50);
   
@@ -143,13 +155,13 @@ void parseScore(char recv[]) {
 void sendScore() {
   matrix.writeDigitRaw(2, 0x04);
   matrix.writeDisplay();
-  char data[20];
-  strcpy(data, P1Score);
-  strcat(data, ":");
-  strcat(data, P2Score);
 
-  rf69.send(data, sizeof(data));
-  rf69.waitPacketSent(100);
+  char radiopacket[20];
+  sprintf(radiopacket, "%02d:%02d", P1Score, P2Score);
+    
+  rf69.send((uint8_t *)radiopacket, strlen(radiopacket));
+  rf69.waitPacketSent();
+
   delay(50);
   
   matrix.writeDigitRaw(2, 0x00);
@@ -241,14 +253,14 @@ void loop() {
   uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
   uint8_t len = sizeof(buf);
 
-  if (lastScoreCheck == NULL || millis() - lastScoreCheck > 200) {
-    if (rf69.waitAvailableTimeout(100))  {       
-      if (rf69.recv(buf, &len)) {
-        parseScore((char*)buf);
-      }
-    }   
+  //if (lastScoreCheck == NULL || millis() - lastScoreCheck > 200) {
+  //    lastScoreCheck = millis();
+  //}   
     
-    lastScoreCheck = millis();
+  if (rf69.waitAvailableTimeout(100))  {       
+    if (rf69.recv(buf, &len)) {
+      parseScore((char *)buf);
+    }
   }
   
   writeScore(P1Score,1);
