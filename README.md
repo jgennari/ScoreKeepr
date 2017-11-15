@@ -1,7 +1,7 @@
 # ScoreKeepr
 A digital, wireless scorekeeper for games like cornhole & table tennis.
 
-![Picture of ScoreKeepr](https://photos.app.goo.gl/Ue6MKq8SlKB6R1Xc2)
+![Picture of ScoreKeepr](https://lh3.googleusercontent.com/v-XfOl9yOUwXBhUw_9KL1M1RmGstFs-cc0sc7AzLUCWk5MtLbUBRHvb4mKNmOPK3LZ2nKdJ-m3XZNx1xIlY1d2fsh0-OWNqoPEBlZOwYlDAB7oLBSPhQHNLfKpXnME5yqIEK_pdSLnUG1raSMxbq8ieFafR5spcrzRlGRid4No2GPBQ1lgfbRMEiUszWdZQ-FHBmCuA5NvjknOOYWugCwe-xoZAmURTPv94WJ5gTtfikftMXnjaCPY_iOruHjWMrLOemqN1kLg65kfcA_JyVgk3-Sqyu2QgHjRsreqrudIL2RbhYZZXrLja9f7Y9GRfdWAyVCl4aPl4ejbPDfOqVGram5gd-3SYmTwTHixeHsJ1c2hrf3Q3XNL-hUqBw_PQOdxI7_3Or4zLjRAAtWDpJpKCzSY56Yc55xFr-cvhgNjg21ibghr-AO6FOvbWv7nIQ_g8NmQb5mJ0oGXWGGf1DEtISskDmGwd8uL8wWXGZxsyb-5_SZSNECF2myt_shnB81X51SZLucSdFNhZOnxFXfqd_ByiXA8-avztKmEUaoNpBRSU-sCW0UIWqIiWWQXvxRF2_9lAY2BjMVmLpJkTRGi9EslXvTdD2V3tEvUpxKwZTzBNwN-A0T0qUE1qn60qwI7ZIKHrdw8-sxDz-KK89aCu4A0N3n2p7XJpc=w1778-h910-no)
 ![Front Board Picture](https://github.com/jgennari/ScoreKeepr/blob/master/board/front.png?raw=true)
 
 ## Overview
