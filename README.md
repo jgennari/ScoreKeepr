@@ -20,6 +20,8 @@ You can buy all the parts individually or use the Digi-Key cart I've created [he
 * 3D Printer
 
 ## Assembly
+![Inside](https://lh3.googleusercontent.com/EB8lr5_Ue-uhq_NUh4rdfYeRYP7nRB3DBMlZgg_3J5hOfSd1uYdCLQTaeXuNpGC8c9cLIu12nuFSjJkAKhCtU4IvUhB__q3_GUOcpaGGLYo6QbFg7tiwQ45jAksJ-Zd9QVCvl8LS1yXSg4I8O9uJK5HNaD9XBWxRjzXbLjncL52W1ikoEYEDLeEDJWmSYlDcvYjA_hdV3JfOwlji0GLr6CqBMI-H9ZgLcEBMRmrk7r29uR5TKh9C5N2jQqN-UMvFyr6E9sVFt5IGL5bmLd3BoqqCEI8VKAIqtmASSbmaUN2nc58vEXNlERWaFy0fHQO74svl8ZI3PX0SEWtVopb_x6lfeCmAjz_euDoYd0-rWo1uDHaJ6__9-mzs-VV_HwsPqahMUAYGUZAHnBwFdqe3ETE1RTF8E4CeEx2C92uKiha-67SM6pX1D7aOaVZznwVqOyxauL0tRA0LPCLbLV23ZiiW4hlSw1Pl463OUSqbDb0_3s4Wnt3OkX9mm9082GtHOdwN0nlH3qvXS7jh2AqF3_WUU86387mw0M2zp5p6VsKGBsRUY4qkFxGrR08rf1s_KeKtNL6jD79NAmeot9Wv4sJKO8C_U4czSp4aXc_v_Y8tVEaYmF7fUkO6_ZbCfBK-2KSczKPP9wupfp7u7AelitiusxMgmPZPJ39r=w1507-h910-no)
+
 The assembly is simple. The Trinket Pro & radio module are mated to the PCB using standard .1" headers for ease of debugging. I used .1" header to connect the switches and regulator, so soldering should be very simple.
 
 ## Programming
@@ -48,5 +50,6 @@ I learned a lot during this project, and with all project there would be future 
 
 * I designed the PCB using Fritzing and enjoyed the experience. For a subsequent project I tried Eagle and found it better suited for serious work. 
 * I learned how to utilize parametric design in Fusion 360 and it really sped up the design of the case. It took about 5 iterations before I got a fit I was happy with. Without parametric design it would've been 5 redesigns from scratch.
+* I misread the specs for the LED 7-segment display and overestimated the power requirements by a large magnitude. I could've used a way smaller regulator, although I do like those three-hole solutions from Pololu.
 
-
+![Power Testing](https://lh3.googleusercontent.com/AjVLxFHPbsxVVe9WUHqJFsg0Itv99qrcK_7O76fUHGWLvgi-HI0GddeOpkAMe5iwYY-z4soHm4KBF3Rcq_0zcbrp8ysE8UfHm-ivrrlQ7wi-r1DnGCSx6geaM3CF6ygm5Rodh8baM0mogPsS2LttfZIRIvq5LN-UqdWuLgVkqncepPw9SeAwiJ7zAuxhTA1QBnvJm7EAYNrHVbwj5P9cMpNLIxkqsgWk3iP3mLkgXhY3zmTk71eJHTcyhBavuJ8WdZ8oLOBCAgDhZpjDjV2Q3tsKXeTarGumBBO3i65IfKvxsfk457tggdO4OD4tgd5cG6VlY_HR0eL3ahxwbU4yZ3KfsyOZe9Pqo-LZfuVJr4E-FYIsG4I3-frRK_bYW1-XULifTdUp0992RzNoa-_PwHwSOOVFKPyoDxxEUOwiULYdSABSBDb2YgjtWRLIf006e0pBbHLN0mLLx5NpIyKVAPw60FoQCPuwVPMWJ_zXFpd6qpBAYIEc18WNaeqvS9pfy_IbhKHgNGDsMw8FlH3lmc0SJuxIlfOJXkkaTfKN1FyxTsl4vpdWmIftJQALDYr7TfK-oDlHyRLsb63CtthsnFEqAfKqAppmXKEA3mbawZMkrcgmae0jjf8f6ExT2OQSI0VNPIBJNKhkBaW7G9eHiSS24kC_uBMTwRk3=w639-h910-no)
