@@ -2,11 +2,19 @@
     "configurations": [
         {
             "name": "Win32",
-            "includePath": [],
+            "includePath": [
+                "C:\\Users\\jgenn\\Documents\\Arduino\\libraries",
+                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr",
+                "${workspaceRoot}",
+                "C:/Users/jgenn/Documents/Arduino/libraries/Adafruit-GFX-Library"
+            ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": false,
                 "path": [
-                    "C:\\Users\\jgenn\\Documents\\Arduino\\libraries"
+                    "C:\\Users\\jgenn\\Documents\\Arduino\\libraries",
+                    "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr",
+                    "${workspaceRoot}",
+                    "C:/Users/jgenn/Documents/Arduino/libraries/Adafruit-GFX-Library"
                 ]
             },
             "intelliSenseMode": "msvc-x64"

@@ -167,7 +167,6 @@ void sendScore() {
   rf69.waitPacketSent();
 
   delay(50);
-  
   matrix.writeDigitRaw(2, 0x00);
   matrix.writeDisplay();
 }
