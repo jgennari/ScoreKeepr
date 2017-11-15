@@ -8,6 +8,8 @@ A digital, wireless scorekeeper for games like cornhole & table tennis.
 ScoreKeepr is a digital, wireless score keeping device for two player games where the players may be stationed apart from each other. For games like [cornhole](https://en.wikipedia.org/wiki/Cornhole) or [table tennis](https://en.wikipedia.org/wiki/Table_tennis). This was my first fully integrated hardware project, including PCB design, CAD modeling for the case, 3D printing, assembly and coding.
 
 ## Required
+You can buy all the parts individually or use the Digi-Key cart I've created [here](http://www.digikey.com/short/q38b45).
+
 * PCB [(link)](https://oshpark.com/shared_projects/CAZ9tcIK)
 * Trinket Pro 5V [(link)](https://www.adafruit.com/product/2000)
 * RFM69 Radio Module [(link)](https://www.adafruit.com/product/3070)
@@ -33,3 +35,18 @@ The Trinket Pro 5V has a USB bootloader, so programming is pretty straight forwa
    LowPower [(link)](https://github.com/rocketscream/Low-Power)  
    EEPROMex [(link)](https://github.com/thijse/Arduino-EEPROMEx)  
 * Install the Trinket Pro boards in the Arduino IDE [(link)](https://learn.adafruit.com/introducing-pro-trinket/setting-up-arduino-ide)
+
+## Future Improvements
+I learned a lot during this project, and with all project there would be future improvements I would incorporate:
+
+* Reduction in size - Due to the use of the LED backpack and Trinket, a lot of space is wasted between all the surfaces.
+* Reduction in cost - Using modules and backpacks helped reduce the complexity in design, however you pay for that service. In future revisions there would be a single PCB utilizing discrete components.
+* Mounting - The 3D printed case was the most simple case I could design to hold all the parts securely. There was very little thought to how it would be actually utilized. A redesign should include a mounting solution.
+* Bootloader - The current implementation keeps the USB bootloader on the Trinket. However there is about a 3 second delay on boot while it checks for the presence of a USB device. This should be eliminated by burning the code directly to the MCU.
+
+## Lessons Learned
+
+* I designed the PCB using Fritzing and enjoyed the experience. For a subsequent project I tried Eagle and found it better suited for serious work. 
+* I learned how to utilize parametric design in Fusion 360 and it really sped up the design of the case. It took about 5 iterations before I got a fit I was happy with. Without parametric design it would've been 5 redesigns from scratch.
+
+
