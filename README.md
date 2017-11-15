@@ -40,6 +40,8 @@ The Trinket Pro 5V has a USB bootloader, so programming is pretty straight forwa
 ## Operation
 The operation is simple. There is a power switch in the middle and two rocker switch for player 1 and player 2. Clicking the rocker switches up and down will increase and decrease the score for each player respectively. Pressing and holding the P2 down button will reset the score. Pressing and holding the P1 down button will cycle through different brightness levels. 
 
+Click below to watch the video:
+
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=zjyllZozEEc" target="_blank"><img src="http://img.youtube.com/vi/zjyllZozEEc/0.jpg" 
 alt="Operation Video" width="240" height="180" border="10" /></a>
 
