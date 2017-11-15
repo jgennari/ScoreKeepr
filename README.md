@@ -38,6 +38,9 @@ The Trinket Pro 5V has a USB bootloader, so programming is pretty straight forwa
    EEPROMex [(link)](https://github.com/thijse/Arduino-EEPROMEx)  
 * Install the Trinket Pro boards in the Arduino IDE [(link)](https://learn.adafruit.com/introducing-pro-trinket/setting-up-arduino-ide)
 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=zjyllZozEEc" target="_blank"><img src="http://img.youtube.com/vi/zjyllZozEEc/0.jpg" 
+alt="Operation Video" width="240" height="180" border="10" /></a>
+
 ## Future Improvements
 I learned a lot during this project, and with all project there would be future improvements I would incorporate:
 
