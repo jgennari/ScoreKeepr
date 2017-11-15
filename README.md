@@ -38,6 +38,9 @@ The Trinket Pro 5V has a USB bootloader, so programming is pretty straight forwa
    EEPROMex [(link)](https://github.com/thijse/Arduino-EEPROMEx)  
 * Install the Trinket Pro boards in the Arduino IDE [(link)](https://learn.adafruit.com/introducing-pro-trinket/setting-up-arduino-ide)
 
+## Operation
+The operation is simple. There is a power switch in the middle and two rocker switch for player 1 and player 2. Clicking the rocker switches up and down will increase and decrease the score for each player respectively. Pressing and holding the P2 down button will reset the score. Pressing and holding the P1 down button will cycle through different brightness levels. 
+
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=zjyllZozEEc" target="_blank"><img src="http://img.youtube.com/vi/zjyllZozEEc/0.jpg" 
 alt="Operation Video" width="240" height="180" border="10" /></a>
 
@@ -48,6 +51,8 @@ I learned a lot during this project, and with all project there would be future 
 * Reduction in cost - Using modules and backpacks helped reduce the complexity in design, however you pay for that service. In future revisions there would be a single PCB utilizing discrete components.
 * Mounting - The 3D printed case was the most simple case I could design to hold all the parts securely. There was very little thought to how it would be actually utilized. A redesign should include a mounting solution.
 * Bootloader - The current implementation keeps the USB bootloader on the Trinket. However there is about a 3 second delay on boot while it checks for the presence of a USB device. This should be eliminated by burning the code directly to the MCU.
+* Channels - Currently any unit listening on the 915mhz frequency with the correct encryption key can participate in the game. Ideally there would be different channels available for different games. 
+* Radio - The radio works okay with a wire antenna up to about 50 feet. Any longer and you'd need a different antenna. Also, after I completed the project I found the ESP-Now which utilizes 2.4ghz wifi signal with no router. It would be way cheaper to use a ESP8266 module in this mode.
 
 ## Lessons Learned
 
