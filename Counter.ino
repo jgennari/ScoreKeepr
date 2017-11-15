@@ -108,8 +108,7 @@ void setup() {
     EEPROM.writeInt(memBase+P2ScoreMemory,0);  
     P1Score = 0;
     P2Score = 0;
-  }
-      
+  }      
   
   if (P1Score < 0)
     P1Score = 0;
@@ -142,10 +141,15 @@ void parseScore(char recv[]) {
   
   int x;
   x = strtol(p2s_, NULL, 10);
+
+  if ((P1Score > 9 && i < 9) || (P2Score > 9 && x <9))
+    matrix.clear();
     
   P1Score = i;
   P2Score = x;
-  
+
+  saveScore();
+  lastChange = millis();
   delay(50);
   
   matrix.writeDigitRaw(2, 0x00);
@@ -252,17 +256,14 @@ void loop() {
 
   uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
   uint8_t len = sizeof(buf);
-
-  //if (lastScoreCheck == NULL || millis() - lastScoreCheck > 200) {
-  //    lastScoreCheck = millis();
-  //}   
     
-  if (rf69.waitAvailableTimeout(100))  {       
+  if (rf69.waitAvailableTimeout(50))  {       
     if (rf69.recv(buf, &len)) {
       parseScore((char *)buf);
     }
   }
-  
+
+  matrix.clear();
   writeScore(P1Score,1);
   writeScore(P2Score,4);
 
@@ -274,6 +275,7 @@ void resetScores() {
   P1Score = 0;
   P2Score = 0;
   sendScore();
+  saveScore();
   matrix.clear();
   matrix.writeDisplay();
   lastChange = millis();
@@ -316,6 +318,3 @@ void wake() {
   sleeping = false;
   lastChange = millis();
 }
-
-
-

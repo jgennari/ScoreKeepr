@@ -1,0 +1,4 @@
+{
+    "board": "adafruit:avr:protrinket3",
+    "sketch": "Counter.ino"
+}
